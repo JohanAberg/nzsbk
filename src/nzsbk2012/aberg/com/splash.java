@@ -25,7 +25,6 @@ public class splash extends Activity {
         final Button btnSchedule = (Button) findViewById(R.id.scheduleButton);
         
 
-           
         
         //Listening to button event
         btnStream.setOnClickListener(new View.OnClickListener() {

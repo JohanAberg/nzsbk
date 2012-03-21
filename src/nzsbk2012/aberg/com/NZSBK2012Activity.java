@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -76,11 +77,23 @@ public class NZSBK2012Activity extends Activity {
         	
 //        	Toast.makeText(getApplicationContext(), "no saved instance", Toast.LENGTH_LONG).show();
 	        mWebView = (WebView) findViewById(R.id.webview);
-	        mWebView.getSettings().setJavaScriptEnabled(true);
-	        mWebView.getSettings().setPluginsEnabled(true);
-	        mWebView.getSettings().setBuiltInZoomControls(true);
-	        mWebView.setWebViewClient(new HelloWebViewClient());
 	        
+	        mWebView.getSettings().setJavaScriptEnabled(true);
+	               
+	        
+	        if (Build.VERSION.SDK_INT < 8) {
+	            mWebView.getSettings().setPluginsEnabled(true);
+	        } else {
+	            mWebView.getSettings().setPluginState(PluginState.ON);
+	        }
+	        
+	        mWebView.getSettings().setBuiltInZoomControls(true);
+	        
+	        mWebView.getSettings().setLoadWithOverviewMode(true);
+	        mWebView.getSettings().setUseWideViewPort(true);
+	        
+	        mWebView.setWebViewClient(new HelloWebViewClient());
+	      	        
 	        mWebView.setWebChromeClient(new WebChromeClient() {
 	            public void onProgressChanged(WebView view, int progress)
 	            {
@@ -165,6 +178,7 @@ public class NZSBK2012Activity extends Activity {
 		}
 	}
   
+  	
    public void loadPage(String page){
 
     	if (page.equals("Stream") ){
@@ -181,6 +195,8 @@ public class NZSBK2012Activity extends Activity {
     	}    	
     }
 	
+ 
+   
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

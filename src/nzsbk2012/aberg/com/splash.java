@@ -16,10 +16,10 @@ public class splash extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
         
-        final String appTitle = "New Zealand Superbike Championship 2012";
+        final String appTitle = "Bridgestone Winter Series 2012";
         activity.setTitle(appTitle);
         
-        final Button btnStream = (Button) findViewById(R.id.streamButton);
+//        final Button btnStream = (Button) findViewById(R.id.streamButton);
         final Button btnMylaps = (Button) findViewById(R.id.mylapsButton);
         final Button btnTiming = (Button) findViewById(R.id.timingButton);
         final Button btnSchedule = (Button) findViewById(R.id.scheduleButton);
@@ -27,18 +27,15 @@ public class splash extends Activity {
 
         
         //Listening to button event
-        btnStream.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-                //Starting a new Intent
-                Intent nextScreen = new Intent(getApplicationContext(), NZSBK2012Activity.class);
-                nextScreen.putExtra("name", btnStream.getText().toString());
-//                startActivity(nextScreen);
-                startActivityForResult(nextScreen, 100);
- 
-                
-                
-            }
-        });
+//        btnStream.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View arg0) {
+//                //Starting a new Intent
+//                Intent nextScreen = new Intent(getApplicationContext(), NZSBK2012Activity.class);
+//                nextScreen.putExtra("name", btnStream.getText().toString());
+//                startActivityForResult(nextScreen, 100);
+//  
+//            }
+//        });
         
         //Listening to button event
         btnMylaps.setOnClickListener(new View.OnClickListener() {

@@ -18,8 +18,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.Plugin;
 import android.webkit.WebChromeClient;
-import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -83,13 +83,14 @@ public class NZSBK2012Activity extends Activity {
 	        
 	        if (Build.VERSION.SDK_INT < 8) {
 	            mWebView.getSettings().setPluginsEnabled(true);
-	        } else {
-	            mWebView.getSettings().setPluginState(PluginState.ON);
-	        }
-	        
+	        } 
+//	            else {
+//	            mWebView.getSettings().setPluginState(Plugin.ON);
+//	        }
+	  	        
 	        mWebView.getSettings().setBuiltInZoomControls(true);
 	        
-	        mWebView.getSettings().setLoadWithOverviewMode(true);
+//	        mWebView.getSettings().setLoadWithOverviewMode(true);
 	        mWebView.getSettings().setUseWideViewPort(true);
 	        
 	        mWebView.setWebViewClient(new HelloWebViewClient());
@@ -114,15 +115,20 @@ public class NZSBK2012Activity extends Activity {
         
     }
     
+    
+    String emb = "<embed src=\"http://player.viewer.dacast.com/DacastPlayer.swf?c=3695_3982\"type=\"application/x-shockwave-flash\">";
 
-    String f3=" http://viewer.dacast.com/b/3695/f/10545\" ";
-   	String live=" http://viewer.dacast.com/b/3695/c/3982\" ";
+    String f3=" \"http://viewer.dacast.com/b/3695/f/10545\" ";
+   	String live=" \"http://viewer.dacast.com/b/3695/c/3982\" ";
+   	String triSeries = "";
     
     public void loadStreams(){
 	    String html = "<html><body><center><H4><strong>2012<br>New Zealand<BR> Superbike Championship<br></H4></strong>";
 //	    html = html + "<P>Audio Stream<br><iframe id=\"dacasturl\" src=\"http://viewer.dacast.com/b/3695/c/4430\" width=\"300\" height=\"175\" frameborder=\"1\" scrolling=\"no\"></iframe> ";
+//	    html = html + emb;
 	    html = html + "<P>Video Stream<BR>";
-	    html = html + "<iframe id=\"dacasturl\" src=\"http://viewer.dacast.com/b/3695/c/3982\" width=\"640\" height=\"360\" frameborder=\"1\" scrolling=\"no\"></iframe> ";
+	    html = html + "<iframe id=\"dacasturl " + live + "></iframe> ";
+//	    html = html + "<iframe id=\"dacasturl " + f3 + " width=\"640\" height=\"360\" frameborder=\"1\" scrolling=\"no\"></iframe> ";
 	    html = html + "<p>Streaming data provided by:<br><img border=\"0\" hspace=\"0\" src=\"http://www.ctas.co.nz/images/CtasLogo45.png\"><br> ";
 	    html = html + "</body></html>";
 	    String mime = "text/html";
@@ -134,18 +140,22 @@ public class NZSBK2012Activity extends Activity {
     
     
     public void loadSchedule(){
-    	String url = "http://www.livetiming.co.nz/data/NZSBKSchedule.png";
+//    	String url = "http://www.livetiming.co.nz/data/NZSBKSchedule.png";
+    	String url = "http://www.livetiming.co.nz/data/VicMCCSchedule.jpg";
         mWebView.loadUrl(url);	
     }
     	
     	
     public void loadTiming(){
-    	String url = "http://www.livetiming.co.nz/wsNZSBK.aspx";
+//    	String url = "http://www.livetiming.co.nz/wsNZSBK.aspx";
+    	String url = "http://livetiming.co.nz/wsTriSeries.aspx";
+    	//String url = "http://www.livetiming.co.nz/wsVicMCC.aspx";
         mWebView.loadUrl(url);	
     }
     
     public void loadMylaps(){
-    	String url = "http://www.mylaps.com/championship/index.jsp?id=110173";
+//    	String url = "http://www.mylaps.com/championship/index.jsp?id=110173";
+    	String url = "http://www.mylaps.com/championship/index.jsp?id=44628";
 		mWebView.loadUrl(url);	
     }
     
@@ -157,11 +167,11 @@ public class NZSBK2012Activity extends Activity {
 			//
 			loadTiming();			
 			return true;
-		case R.id.item2:
-			//url = "http://player.viewer.dacast.com/DacastPlayer.swf?c=3695_4430";
-			//mWebView.loadUrl(url);
-			loadStreams();
-			return true;	
+//		case R.id.item2:
+//			//url = "http://player.viewer.dacast.com/DacastPlayer.swf?c=3695_4430";
+//			//mWebView.loadUrl(url);
+//			loadStreams();
+//			return true;	
 		case R.id.item4:
 			loadMylaps();
 			//finish();
